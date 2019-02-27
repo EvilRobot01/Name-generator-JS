@@ -6,7 +6,7 @@ function loadNames(e){
 
     //Read values, create variables
     const origin = document.getElementById('country').value;
-    const gender = document.getElementById('gender').value;
+    const gender = document.getElementById('genre').value;
     const amount = document.getElementById('quantity').value;
 
     //Build the URL
@@ -37,6 +37,16 @@ function loadNames(e){
     xhr.onload = function(){
         if(this.status === 200){
             const names = JSON.parse( this.responseText );
+
+            let html = '<h2>Generated Names</h2>';
+            html += '<ul class="list">';
+            names.forEach(name => {
+                html += `
+                <li>${name.name}</li>
+                `;
+            });
+            html += '</ul>';
+            document.querySelector('#result').innerHTML = html;
         }
     }
 
