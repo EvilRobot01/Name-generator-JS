@@ -27,17 +27,11 @@ function loadNames(e){
         url += `amount=${amount}&`;
     }
 
-    //AJAX call
-    const xhr = new XMLHttpRequest();
-
-    //Open connection
-    xhr.open('GET', url, true);
-
-    //Execute the function
-    xhr.onload = function(){
-        if(this.status === 200){
-            const names = JSON.parse( this.responseText );
-
+    fetch(url)
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(names){
             let html = '<h2>Generated Names</h2>';
             html += '<ul class="list">';
             names.forEach(name => {
@@ -46,13 +40,9 @@ function loadNames(e){
                 `;
             });
             html += '</ul>';
-            document.querySelector('#result').innerHTML = html;
-        }
-    }
-
-    //Send request
-    xhr.send();
-
-
-
+            document.querySelector('#result').innerHTML = html; 
+        })
+        .catch(function(error){
+            console.log(error);
+        })
 }
