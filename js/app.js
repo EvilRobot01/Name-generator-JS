@@ -19,13 +19,30 @@ function loadNames(e){
 
     //Read gender, append url
     if(gender !== ''){
-        url += `region=${gender}&`;
+        url += `gender=${gender}&`;
     }
 
     //Read amount, append url
     if(amount !== ''){
-        url += `region=${amount}&`;
+        url += `amount=${amount}&`;
     }
+
+    //AJAX call
+    const xhr = new XMLHttpRequest();
+
+    //Open connection
+    xhr.open('GET', url, true);
+
+    //Execute the function
+    xhr.onload = function(){
+        if(this.status === 200){
+            const names = JSON.parse( this.responseText );
+        }
+    }
+
+    //Send request
+    xhr.send();
+
 
 
 }
