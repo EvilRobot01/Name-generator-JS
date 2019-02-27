@@ -6,7 +6,7 @@ function loadNames(e){
 
     //Read values, create variables
     const origin = document.getElementById('country').value;
-    const genre = document.getElementById('genre').value;
+    const gender = document.getElementById('gender').value;
     const amount = document.getElementById('quantity').value;
 
     //Build the URL
@@ -15,6 +15,16 @@ function loadNames(e){
     //Read origin, append url
     if(origin !== ''){
         url += `region=${origin}&`;
+    }
+
+    //Read gender, append url
+    if(gender !== ''){
+        url += `region=${gender}&`;
+    }
+
+    //Read amount, append url
+    if(amount !== ''){
+        url += `region=${amount}&`;
     }
 
 
